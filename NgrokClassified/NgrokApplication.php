@@ -2,8 +2,7 @@
 
 namespace NgrokService;
 
-require_once 'vendor/autoload.php'; // Adjust the path as needed.
-
+require_once 'vendor/autoload.php';
 /**
  * NgrokApplication - Main application class for running the Ngrok service.
  */
