@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 
 // Singleton for managing NGROK Service
 class NgrokService {
@@ -199,6 +200,7 @@ class NgrokApplication {
 
 		$tcpTunnel = ( new TunnelBuilder( 'TCP', 'tcp://localhost:9090' ) )
 							->enableLogging()
+							->enableEncryption()
 							->build();
 
 		$ngrokService->addTunnel( $httpTunnel );

@@ -1,0 +1,14 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "controllers/",
+            "Models\\": "models/",
+            "Factories\\": "factories/",
+            "Strategies\\": "strategies/",
+            "Commands\\": "commands/",
+            "Observers\\": "observers/",
+            "Exceptions\\": "exceptions/",
+            "Enums\\": "enums/"
+        }
+    }
+}

@@ -1,0 +1,35 @@
+https://github.com/kumaransg/LLD
+https://github.com/ashishps1/awesome-low-level-design
+https://github.com/karanpratapsingh/system-design
+https://github.com/prasadgujar/low-level-design-primer
+
+**from websites**
+workat.tech
+lldcoding.com
+blog.algomaster.io
+https://lowleveldesign.io
+Refactoring guru
+source making 
+interviewBit LLD
+
+**Online Courses**
+Expertifie Course
+Algocamp course
+educative course on Grokking Low Level Design Interview using OOD
+Educative - "Grokking the System Design Interview"
+Udemy - "System Design for Developers"
+Udemy - https://www.udemy.com/course/lld-from-basics-to-advanced
+Coursera - "Object Oriented Design"
+Coursera - "Design Patterns"
+Coursera - "Software Design and Architecture" Specialization
+
+**For youtube**
+Bala G
+Gaurav Sen
+TechLead
+Udit Agarwal
+The Code Mate
+Soumyajit Bhattacharya
+
+https://medium.com/@sandeep.kumar.ece16/low-level-design-roadmap-7581688d96fa
+https://shashibhushankr.medium.com/cracking-the-low-level-design-lld-interview-4e02b3b555e2

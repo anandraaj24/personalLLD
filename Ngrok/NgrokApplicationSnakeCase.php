@@ -1,4 +1,5 @@
 <?php
+// phpcs:ignoreFile
 
 // Singleton for managing NGROK Service
 class NgrokService {

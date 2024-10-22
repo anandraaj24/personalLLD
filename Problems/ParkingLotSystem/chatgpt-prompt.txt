@@ -1,0 +1,422 @@
+public enum VehicleType {
+    CAR("Car"),
+    TRUCK("Truck"),
+    ELECTRIC("Electric Car"),
+    VAN("Van"),
+    MOTORBIKE("Motorbike");
+
+    private String description;
+
+    VehicleType(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    // Check if a vehicle can fit in a given parking spot type
+    public boolean canFitInSpot(ParkingSpotType spotType) {
+        switch (this) {
+            case TRUCK:
+            case VAN:
+                return spotType == ParkingSpotType.LARGE;
+            case MOTORBIKE:
+                return spotType == ParkingSpotType.MOTORBIKE;
+            case CAR:
+                return spotType == ParkingSpotType.COMPACT || spotType == ParkingSpotType.LARGE;
+            case ELECTRIC:
+                return spotType == ParkingSpotType.ELECTRIC || spotType == ParkingSpotType.COMPACT || spotType == ParkingSpotType.LARGE;
+            default:
+                return false;
+        }
+    }
+}
+
+// Enum for different parking spot types with additional helper methods
+public enum ParkingSpotType {
+    HANDICAPPED("Handicapped"),
+    COMPACT("Compact"),
+    LARGE("Large"),
+    MOTORBIKE("Motorbike"),
+    ELECTRIC("Electric Charging");
+
+    private String displayName;
+
+    ParkingSpotType(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    // Check if the spot type is suitable for a specific vehicle type
+    public boolean isSuitableFor(VehicleType vehicleType) {
+        return vehicleType.canFitInSpot(this);
+    }
+}
+
+// Enum for account status with methods for status validation
+public enum AccountStatus {
+    ACTIVE("Active"),
+    BLOCKED("Blocked"),
+    BANNED("Banned"),
+    COMPROMISED("Compromised"),
+    ARCHIVED("Archived"),
+    UNKNOWN("Unknown");
+
+    private String description;
+
+    AccountStatus(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    // Check if the account is in a good standing
+    public boolean isAccountActive() {
+        return this == ACTIVE;
+    }
+}
+
+// Enum for parking ticket status with helper methods
+public enum ParkingTicketStatus {
+    ACTIVE("Ticket Active"),
+    PAID("Ticket Paid"),
+    LOST("Ticket Lost");
+
+    private String description;
+
+    ParkingTicketStatus(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    // Check if the parking ticket is paid
+    public boolean isPaid() {
+        return this == PAID;
+    }
+}
+
+// Singleton Pattern for ParkingLot
+public class ParkingLot {
+    private static ParkingLot instance;
+    private String name;
+    private Address address;
+    private ParkingRate parkingRate;
+    private Map<String, ParkingFloor> parkingFloors;
+    private Map<String, EntrancePanel> entrancePanels;
+    private Map<String, ExitPanel> exitPanels;
+    private Map<String, ParkingTicket> activeTickets;
+
+    private ParkingLot() {
+        // Initialize parking lot details from the database
+    }
+
+    public static synchronized ParkingLot getInstance() {
+        if (instance == null) {
+            instance = new ParkingLot();
+        }
+        return instance;
+    }
+
+    public synchronized ParkingTicket getNewParkingTicket(Vehicle vehicle) throws ParkingFullException {
+        if (this.isFull(vehicle.getType())) {
+            throw new ParkingFullException("Parking full for vehicle type: " + vehicle.getType());
+        }
+
+        ParkingTicket ticket = new ParkingTicket();
+        vehicle.assignTicket(ticket);
+        ticket.saveInDB();
+        incrementSpotCount(vehicle.getType());
+        activeTickets.put(ticket.getTicketNumber(), ticket);
+        return ticket;
+    }
+
+    public boolean isFull(VehicleType type) {
+        // Check if parking is full for the specific vehicle type
+        // Implementation for isFull logic based on vehicle type
+    }
+
+    private void incrementSpotCount(VehicleType type) {
+        // Increment the spot count for the vehicle type
+        // Implementation based on vehicle type
+    }
+
+    public void addParkingFloor(ParkingFloor floor) {
+        // Add a new parking floor
+        parkingFloors.put(floor.getName(), floor);
+    }
+
+    public void addEntrancePanel(EntrancePanel entrancePanel) {
+        entrancePanels.put(entrancePanel.getId(), entrancePanel);
+    }
+
+    public void addExitPanel(ExitPanel exitPanel) {
+        exitPanels.put(exitPanel.getId(), exitPanel);
+    }
+}
+
+// Factory Method Pattern for creating parking spots
+abstract class ParkingSpotFactory {
+    public abstract ParkingSpot createParkingSpot();
+}
+
+class HandicappedSpotFactory extends ParkingSpotFactory {
+    @Override
+    public ParkingSpot createParkingSpot() {
+        return new HandicappedSpot();
+    }
+}
+
+class CompactSpotFactory extends ParkingSpotFactory {
+    @Override
+    public ParkingSpot createParkingSpot() {
+        return new CompactSpot();
+    }
+}
+
+class LargeSpotFactory extends ParkingSpotFactory {
+    @Override
+    public ParkingSpot createParkingSpot() {
+        return new LargeSpot();
+    }
+}
+
+// Factory Method for creating vehicles
+abstract class VehicleFactory {
+    public abstract Vehicle createVehicle();
+}
+
+class CarFactory extends VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new Car();
+    }
+}
+
+class TruckFactory extends VehicleFactory {
+    @Override
+    public Vehicle createVehicle() {
+        return new Truck();
+    }
+}
+
+// Observer Pattern for updating the ParkingDisplayBoard
+interface Observer {
+    void update(String message);
+}
+
+class ParkingDisplayBoard implements Observer {
+    private String id;
+    private ParkingSpot handicappedFreeSpot;
+    private ParkingSpot compactFreeSpot;
+    private ParkingSpot largeFreeSpot;
+    private ParkingSpot motorbikeFreeSpot;
+    private ParkingSpot electricFreeSpot;
+
+    public void update(String message) {
+        System.out.println("Display Board Updated: " + message);
+        showEmptySpotNumber();
+    }
+
+    public void showEmptySpotNumber() {
+        // Display the free spots on the board
+        String message = "";
+        message += handicappedFreeSpot.isFree() ? "Free Handicapped Spot: " + handicappedFreeSpot.getNumber() : "Handicapped full";
+        message += "\n";
+        message += compactFreeSpot.isFree() ? "Free Compact Spot: " + compactFreeSpot.getNumber() : "Compact full";
+        // Continue for other spots...
+        System.out.println(message);
+    }
+}
+
+// Command Pattern for ticket processing
+interface Command {
+    void execute();
+}
+
+class ProcessTicketCommand implements Command {
+    private ParkingAttendant attendant;
+    private String ticketNumber;
+
+    public ProcessTicketCommand(ParkingAttendant attendant, String ticketNumber) {
+        this.attendant = attendant;
+        this.ticketNumber = ticketNumber;
+    }
+
+    @Override
+    public void execute() {
+        attendant.processTicket(ticketNumber);
+    }
+}
+
+// Strategy Pattern for payment processing
+interface PaymentStrategy {
+    void pay(ParkingTicket ticket);
+}
+
+class CashPaymentStrategy implements PaymentStrategy {
+    @Override
+    public void pay(ParkingTicket ticket) {
+        System.out.println("Processing cash payment for ticket: " + ticket.getTicketNumber());
+        ticket.updateStatus(ParkingTicketStatus.PAID);
+    }
+}
+
+class CreditCardPaymentStrategy implements PaymentStrategy {
+    @Override
+    public void pay(ParkingTicket ticket) {
+        System.out.println("Processing credit card payment for ticket: " + ticket.getTicketNumber());
+        ticket.updateStatus(ParkingTicketStatus.PAID);
+    }
+}
+
+// Template Method Pattern for vehicle parking
+abstract class ParkingSpot {
+    private String number;
+    private boolean free = true;
+    private Vehicle vehicle;
+    private final ParkingSpotType type;
+
+    public ParkingSpot(ParkingSpotType type) {
+        this.type = type;
+    }
+
+    public boolean assignVehicle(Vehicle vehicle) {
+        if (!this.isFree()) return false;
+        this.vehicle = vehicle;
+        free = false;
+        return true;
+    }
+
+    public boolean removeVehicle() {
+        this.vehicle = null;
+        free = true;
+        return true;
+    }
+
+    public boolean isFree() {
+        return free;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public ParkingSpotType getType() {
+        return type;
+    }
+}
+
+class HandicappedSpot extends ParkingSpot {
+    public HandicappedSpot() {
+        super(ParkingSpotType.HANDICAPPED);
+    }
+}
+
+class CompactSpot extends ParkingSpot {
+    public CompactSpot() {
+        super(ParkingSpotType.COMPACT);
+    }
+}
+
+class LargeSpot extends ParkingSpot {
+    public LargeSpot() {
+        super(ParkingSpotType.LARGE);
+    }
+}
+
+// Vehicle class remains unchanged
+public class Car extends Vehicle {
+    public Car() {
+        super(VehicleType.CAR);
+    }
+}
+
+public class Truck extends Vehicle {
+    public Truck() {
+        super(VehicleType.TRUCK);
+    }
+}
+
+// Main class for testing
+public class Main {
+    public static void main(String[] args) {
+        // Singleton Pattern: Get the parking lot instance
+        ParkingLot parkingLot = ParkingLot.getInstance();
+
+        // Create vehicles using Factory Method
+        VehicleFactory carFactory = new CarFactory();
+        Vehicle car = carFactory.createVehicle();
+
+        // Create a parking ticket for the vehicle
+        try {
+            ParkingTicket ticket = parkingLot.getNewParkingTicket(car);
+            System.out.println("Parking ticket issued: " + ticket.getTicketNumber());
+
+            // Process the ticket using Command Pattern
+            ParkingAttendant attendant = new ParkingAttendant();
+            Command processTicketCommand = new ProcessTicketCommand(attendant, ticket.getTicketNumber());
+            processTicketCommand.execute();
+
+            // Pay for the ticket using Strategy Pattern
+            PaymentStrategy paymentStrategy = new CashPaymentStrategy();
+            paymentStrategy.pay(ticket);
+        } catch (ParkingFullException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+convert this code into php, make different files according to the code, add comments for files, classes, methods, variables etc. follow proper php coding standards. make all the variables and methods name in snake case.
+
+Ensure that the code is robust and secure also handles all the edge cases and complete the incomplete code.
+
+
+/parking_lot_system
+    /controllers
+        ParkingLotController.php
+    /enums
+        VehicleType.php
+        ParkingSpotType.php
+        AccountStatus.php
+        ParkingTicketStatus.php
+    /exceptions
+        ParkingFullException.php
+    /models
+        ParkingLot.php
+        ParkingFloor.php
+        ParkingSpot.php
+        HandicappedSpot.php
+        CompactSpot.php
+        LargeSpot.php
+        Vehicle.php
+        Car.php
+        Truck.php
+        ParkingTicket.php
+        EntrancePanel.php
+        ExitPanel.php
+        ParkingAttendant.php
+    /factories
+        ParkingSpotFactory.php
+        VehicleFactory.php
+        CarFactory.php
+        TruckFactory.php
+    /strategies
+        PaymentStrategy.php
+        CashPaymentStrategy.php
+        CreditCardPaymentStrategy.php
+    /commands
+        Command.php
+        ProcessTicketCommand.php
+    /observers
+        Observer.php
+        ParkingDisplayBoard.php
+    /index.php
