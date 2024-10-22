@@ -1,0 +1,3 @@
+https://swatijha.hashnode.dev/parking-lot-low-level-design
+https://lldcoding.com/design-lld-a-parking-lot-machine-coding-interview
+https://github.com/tssovi/grokking-the-object-oriented-design-interview/blob/master/object-oriented-design-case-studies/design-a-parking-lot.md
