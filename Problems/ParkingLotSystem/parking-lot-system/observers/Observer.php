@@ -5,5 +5,5 @@ namespace Observers;
  * Interface for observers.
  */
 interface Observer {
-    public function update($message);
+	public function update( $message );
 }

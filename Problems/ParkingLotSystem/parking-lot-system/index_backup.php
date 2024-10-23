@@ -26,26 +26,26 @@ use Models\ParkingAttendant;
 use Exceptions\ParkingFullException;
 
 try {
-    // Get the singleton instance of ParkingLot
-    $parking_lot = ParkingLot::get_instance();
+	// Get the singleton instance of ParkingLot
+	$parking_lot = ParkingLot::get_instance();
 
-    // Create vehicles using the factory
-    $car_factory = new CarFactory();
-    $car = $car_factory->create_vehicle();
+	// Create vehicles using the factory
+	$car_factory = new CarFactory();
+	$car         = $car_factory->create_vehicle();
 
-    // Create a parking ticket for the vehicle
-    $ticket = $parking_lot->get_new_parking_ticket($car);
-    echo "Parking ticket issued: " . $ticket->get_ticket_number() . PHP_EOL;
+	// Create a parking ticket for the vehicle
+	$ticket = $parking_lot->get_new_parking_ticket( $car );
+	echo 'Parking ticket issued: ' . $ticket->get_ticket_number() . PHP_EOL;
 
-    // Process the ticket using the command pattern
-    $attendant = new ParkingAttendant();
-    $process_ticket_command = new ProcessTicketCommand($attendant, $ticket->get_ticket_number());
-    $process_ticket_command->execute();
+	// Process the ticket using the command pattern
+	$attendant              = new ParkingAttendant();
+	$process_ticket_command = new ProcessTicketCommand( $attendant, $ticket->get_ticket_number() );
+	$process_ticket_command->execute();
 
-    // Pay for the ticket using the cash payment strategy
-    $payment_strategy = new CashPaymentStrategy();
-    $payment_strategy->pay($ticket);
+	// Pay for the ticket using the cash payment strategy
+	$payment_strategy = new CashPaymentStrategy();
+	$payment_strategy->pay( $ticket );
 
-} catch (ParkingFullException $e) {
-    echo $e->getMessage();
+} catch ( ParkingFullException $e ) {
+	echo $e->getMessage();
 }

@@ -12,4 +12,3 @@ echo $controller->issue_ticket_for_car() . PHP_EOL;
 
 // Issue a ticket for a truck
 echo $controller->issue_ticket_for_truck() . PHP_EOL;
-
