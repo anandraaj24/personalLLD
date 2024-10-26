@@ -1,97 +1,96 @@
 <?php
 /**
- * File for parking lot.
+ * File for ParkingLot Model.
  *
  * @package ParkingLotSystem
  */
 
-namespace Models;
-
-use Exceptions\ParkingFullException;
-use Enums\VehicleType;
-
 /**
- * Class for parking lot singleton.
+ * Main class for ParkingLot
  */
 class ParkingLot {
 	/**
-	 * Holds the single instance.
+	 * Holds the instance of ParkingLot (Singleton).
 	 *
-	 * @var ParkingLot Holds the instance of this class.
+	 * @var ParkingLot Holds the instance of ParkingLot.
 	 */
-	private static $instance;
+	private static ?ParkingLot $instance = null;
 
 	/**
-	 * Holds all the tickets.
+	 * Holds all the parking floor.
 	 *
-	 * @var array Holds all the tickets of parking lot.
+	 * @var array Array of parking floors in parking lot.
+	 */
+	private array $parking_floor = array();
+
+	/**
+	 * Holds all the tickets of parking lot.
+	 *
+	 * @var ParkingTicket[] Array of parking tickets.
 	 */
 	private array $parking_tickets = array();
 
 	/**
-	 * Holds all the numbers of parking floors.
-	 *
-	 * @var array Holds all the number of parking floors.
+	 * Private constructor to prevent the direct instantiation of the class.
 	 */
-	private array $parking_floors = array();
-
 	private function __construct() {}
-	private function __clone() {}
-	public function __wakeup() {}
-
-	public static function get_instance() {
-		if ( self::$instance == null ) {
-			self::$instance = new ParkingLot();
-		}
-
-		return self::$instance;
-	}
 
 	/**
-	 * This function will issue ticket to the given vehicle.
-	 *
-	 * @param VehicleType $vehicle Vehicle type.
-	 * @throws ParkingFullException Exception if parking is full.
-	 * @return ParkingTicket Ticket for vehicle.
+	 * Private clone method to prevent cloning of the instance.
 	 */
-	public function issue_new_parking_ticket( $vehicle ) {
+	private function __clone() {}
+
+	/**
+	 * Private wakeup method to prevent unserialization of the instance.
+	 */
+	private function __wakeup() {}
+
+	/**
+	 * Function to issue new parking ticket for vehicle.
+	 *
+	 * @param Vehicle $vehicle Holds the vehicle instance.
+	 * @throws ParkingFullException Exception if parking is full.
+	 * @return Ticket Ticket issued.
+	 */
+	public function issue_new_parking_ticket( Vehicle $vehicle ): Ticket {
 		if ( $this->is_full( $vehicle->get_type() ) ) {
-			throw new ParkingFullException( ' Parking lot is full for vehicle type: ' . $vehicle->get_type() );
+			throw new ParkingFullException( 'Parking is full for vehicle type: ' . $vehicle->get_type() );
 		}
 
 		$ticket = new ParkingTicket();
 		$vehicle->assign_ticket( $ticket );
 		$ticket->save_in_db();
+
 		$this->increment_spot_count( $vehicle->get_type() );
 		$this->parking_tickets[ $ticket->get_ticket_number() ] = $ticket;
 		return $ticket;
 	}
 
 	/**
-	 * Function to check if parking lot is full for the vehicle type.
+	 * Function to check if parking is full.
 	 *
-	 * @param VehicleType $vehicle_type Type of vehicle.
-	 * @return bool If the parking is full or not.
+	 * @param VehicleType $vehicle_type Holds the type of vehicle.
+	 * @return bool If parking is full or not.
 	 */
-	public function is_full( $vehicle_type ) {
+	public function is_full( VehicleType $vehicle_type ): bool {
 		return false;
 	}
 
 	/**
-	 * Function to increment the spot count for vehicle type.
+	 * Function to increment the parking spot count for vehicle.
 	 *
 	 * @param VehicleType $vehicle_type Holds the type of vehicle.
 	 */
-	private function increment_spot_count( $vehicle_type ) {
-		// Incrementing the spot count of parking lot.
+	private function increment_spot_count( VehicleType $vehicle_type ): void {
+		// Incrementing the spot count.
 	}
 
 	/**
-	 * Function to add the parking floor on the parking lot.
+	 * Function to increment the parking floor for vehicle type.
 	 *
-	 * @return void
+	 * @param VehicleType $vehicle_type Holds the type of variable.
 	 */
-	private function add_parking_floor() {
-		// Adding parking floor on the parking lot.
+	private function add_parking_floor( VehicleType $vehicle_type ): void {
+		$this->parking_floors[ $vehicle_type ] += 1;
 	}
 }
