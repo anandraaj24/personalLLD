@@ -1,0 +1,48 @@
+**Creational**
+
+AbstractFactory 📓
+Builder 📓 -- learned
+FactoryMethod 📓
+Pool 📓
+Prototype 📓 -- to learn
+SimpleFactory -- learned
+Singleton 📓 -- learned
+StaticFactory
+
+**Structural**
+
+Adapter 📓 -- to learn
+Bridge 📓
+Composite 📓
+DataMapper 📓
+Decorator 📓 -- to learn
+DependencyInjection 📓
+Facade 📓 -- to learn
+FluentInterface 📓
+Flyweight 📓 -- to learn
+Proxy 📓 -- to learn
+Registry 📓
+
+**Behavioral**
+
+ChainOfResponsibilities 📓 -- to learn
+Command 📓 -- to learn
+Interpreter 📓
+Iterator 📓
+Mediator 📓
+Memento 📓
+NullObject 📓
+Observer 📓 -- to learn
+Specification 📓
+State 📓 -- to learn
+Strategy 📓 -- to learn
+TemplateMethod 📓
+Visitor 📓
+
+**More**
+
+EAV 📓
+Repository
+ServiceLocator 📓
+
+what is the builder design pattern, explain in deep with implementation of code, list all the key components of code, benefits and use cases to use this pattern. Write code in php
