@@ -6,6 +6,7 @@ FactoryMethod 📓
 Pool 📓
 Prototype 📓 -- to learn
 SimpleFactory -- learned
+AbstractFactory -- learned
 Singleton 📓 -- learned
 StaticFactory
 
@@ -20,12 +21,12 @@ DependencyInjection 📓
 Facade 📓 -- to learn
 FluentInterface 📓
 Flyweight 📓 -- to learn
-Proxy 📓 -- to learn
+Proxy 📓
 Registry 📓
 
 **Behavioral**
 
-ChainOfResponsibilities 📓 -- to learn
+ChainOfResponsibilities 📓
 Command 📓 -- to learn
 Interpreter 📓
 Iterator 📓
