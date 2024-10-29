@@ -3,6 +3,10 @@ https://github.com/ashishps1/awesome-low-level-design
 https://github.com/karanpratapsingh/system-design
 https://github.com/prasadgujar/low-level-design-primer
 https://github.com/bharadwaj221/edu.io/tree/master -- educative course pdf
+https://github.com/piotrplenik/clean-code-php
+https://ebookfoundation.github.io/free-programming-books-search/
+https://github.com/sindresorhus/awesome
+https://github.com/gmoral/Books/
 
 **from websites**
 workat.tech
