@@ -26,7 +26,6 @@ PHP Implementation of the Prototype Pattern
 
 // Prototype Interface
 interface Shape {
-    public function clone(): Shape;
     public function draw(): string;
 }
 
@@ -38,12 +37,12 @@ class Circle implements Shape {
         $this->radius = $radius;
     }
 
-    public function clone(): Shape {
-        return new Circle($this->radius);
-    }
-
     public function draw(): string {
         return "Drawing a circle with radius " . $this->radius;
+    }
+
+    public function setRadius(Integer $radius): void{
+        $this->radius = $radius;
     }
 }
 
@@ -55,12 +54,12 @@ class Square implements Shape {
         $this->sideLength = $sideLength;
     }
 
-    public function clone(): Shape {
-        return new Square($this->sideLength);
-    }
-
     public function draw(): string {
         return "Drawing a square with side length " . $this->sideLength;
+    }
+
+    public function setSideLength(Integer $sideLength): void{
+        $this->sideLength = $sideLength;
     }
 }
 
@@ -71,14 +70,16 @@ function clientCode() {
     $square = new Square(10);
 
     // Clone the shapes
-    $circleClone = $circle->clone();
-    $squareClone = $square->clone();
+    $circleClone = clone $circle;
+    $circleClone->setRadius(8);
+    $squareClone = clone $square;
+    $squareClone->setSideLength(15);
 
     // Draw the original and cloned shapes
     echo $circle->draw() . "\n";         // Drawing a circle with radius 5
-    echo $circleClone->draw() . "\n";    // Drawing a circle with radius 5 (clone)
+    echo $circleClone->draw() . "\n";    // Drawing a circle with radius 8
     echo $square->draw() . "\n";         // Drawing a square with side length 10
-    echo $squareClone->draw() . "\n";    // Drawing a square with side length 10 (clone)
+    echo $squareClone->draw() . "\n";    // Drawing a square with side length 15
 }
 
 clientCode();

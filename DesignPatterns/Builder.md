@@ -251,3 +251,9 @@ In this variation, the Builder pattern is specifically tailored to allow users t
 - **Builder with Optional Features**: Enhances flexibility by allowing users to include optional features easily. It emphasizes a user-friendly interface with method chaining for better readability.
 
 Both approaches leverage the core principles of the Builder pattern but serve different purposes depending on the complexity of the object and user requirements.
+
+**In standard method**:
+it's like you gave a builder to director, now you say to director to build anything in one line and then director will say it to builder step by step, and you take it from builder.
+
+**In Optional method**:
+it's like you saying the builder directly to build anything but step by step.

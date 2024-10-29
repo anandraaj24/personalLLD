@@ -1,10 +1,10 @@
 **Creational**
 
-AbstractFactory 📓
+AbstractFactory 📓 -- learned
 Builder 📓 -- learned
 FactoryMethod 📓
 Pool 📓
-Prototype 📓 -- to learn
+Prototype 📓 -- learned
 SimpleFactory -- learned
 AbstractFactory -- learned
 Singleton 📓 -- learned

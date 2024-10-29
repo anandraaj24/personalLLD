@@ -96,3 +96,10 @@ try {
 }
 
 ?>
+```
+
+## Difference between simple factory, factory method and abstract factory
+
+- Simple factory -> Factory creating concrete product.
+- Factory Method -> Concrete factory creating concrete product, concrete factory based on the product type.
+- Abstract Factory -> Concrete factory creating concrete product, concrete factory based on the family.
