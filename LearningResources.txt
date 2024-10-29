@@ -41,3 +41,101 @@ https://medium.com/@sandeep.kumar.ece16/low-level-design-roadmap-7581688d96fa
 https://shashibhushankr.medium.com/cracking-the-low-level-design-lld-interview-4e02b3b555e2
 https://dev.to/kumarkalyan/top-5-github-repositories-to-achieve-system-design-mastery-27n4
 https://dev.to/muhammad_salem/how-do-i-prepare-for-low-level-system-design-114g
+
+
+Books to learn writing great softwares using OOAD
+
+Here are some excellent books that can help you learn Object-Oriented Analysis and Design (OOAD) and improve your software development skills:
+
+1. "Design Patterns: Elements of Reusable Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
+Often referred to as the "Gang of Four" (GoF) book, this classic introduces foundational design patterns that can help you solve common design problems in object-oriented software.
+
+2. "Object-Oriented Analysis and Design with Applications" by Grady Booch
+This book provides a comprehensive overview of OOAD principles, methodologies, and techniques, along with practical examples and case studies.
+
+3. "UML Distilled: A Brief Guide to the Standard Object Modeling Language" by Martin Fowler
+A concise guide to using UML (Unified Modeling Language) for modeling object-oriented systems. It covers the essential diagrams and how to use them effectively.
+
+4. "Domain-Driven Design: Tackling Complexity in the Heart of Software" by Eric Evans
+This book emphasizes the importance of focusing on the core domain and developing a shared language between domain experts and developers, leading to better software design.
+
+5. "Refactoring: Improving the Design of Existing Code" by Martin Fowler
+A must-read for understanding how to improve code structure and design without changing its external behavior. It emphasizes the importance of writing clean, maintainable code.
+
+6. "The Pragmatic Programmer: Your Journey To Mastery" by Andrew Hunt and David Thomas
+While not exclusively focused on OOAD, this book provides valuable insights into best practices, coding principles, and how to approach software development pragmatically.
+
+7. "Head First Object-Oriented Analysis and Design" by Brett McLaughlin, Gary Pollice, and David West
+An engaging and visually rich introduction to OOAD concepts, focusing on practical examples and exercises to reinforce learning.
+
+8. "Object-Oriented Design & Programming" by Peter Coad and Edward Yourdon
+This book provides a solid foundation in object-oriented principles, with a focus on design and implementation.
+
+9. "Clean Code: A Handbook of Agile Software Craftsmanship" by Robert C. Martin
+Although it covers more than just OOAD, this book emphasizes writing clean, maintainable, and efficient code, which is essential for any good software developer.
+
+10. "Working Effectively with Legacy Code" by Michael C. Feathers
+This book focuses on strategies for dealing with legacy code, which is a common challenge in software development, and provides techniques to improve and modernize codebases.
+
+Additional Recommendations
+
+Online Courses and Tutorials: Websites like Coursera, Udacity, and edX offer courses in OOAD and software design.
+Practice Projects: Applying concepts through personal or open-source projects can significantly enhance your understanding and skills.
+These resources will provide you with a strong foundation in OOAD principles and help you become proficient in writing great software!
+
+For a beginner in Object-Oriented Analysis and Design (OOAD), the following books from the list are particularly recommended:
+
+1. "Head First Object-Oriented Analysis and Design" by Brett McLaughlin, Gary Pollice, and David West
+Why: This book uses an engaging, visual approach to explain OOAD concepts. It includes practical examples and exercises that make the material accessible and easy to understand for beginners.
+
+2. "Object-Oriented Analysis and Design with Applications" by Grady Booch
+Why: This comprehensive introduction covers fundamental OOAD principles and methodologies, making it suitable for those new to the subject. It provides practical applications and case studies.
+
+3. "UML Distilled: A Brief Guide to the Standard Object Modeling Language" by Martin Fowler
+Why: This concise book introduces UML, which is essential for modeling in OOAD. It’s straightforward and easy to grasp, making it a great starting point for beginners.
+
+4. "The Pragmatic Programmer: Your Journey To Mastery" by Andrew Hunt and David Thomas
+Why: While not exclusively about OOAD, this book provides foundational programming concepts and practices that are valuable for beginners. It emphasizes practical advice and best practices.
+
+5. "Clean Code: A Handbook of Agile Software Craftsmanship" by Robert C. Martin
+Why: This book is excellent for beginners as it teaches the importance of writing clean, maintainable code. The principles discussed are applicable to OOAD and general software development.
+
+Suggested Order of Reading:
+
+Start with "Head First Object-Oriented Analysis and Design" to get a grasp of the basics in an engaging way.
+Follow up with "UML Distilled" to learn about modeling.
+Read "Object-Oriented Analysis and Design with Applications" for a deeper understanding.
+Supplement your knowledge with "The Pragmatic Programmer" and "Clean Code" for broader programming principles.
+
+These books provide a solid foundation for beginners and will help you build your understanding of OOAD effectively!
+
+
+After you’ve read the beginner-friendly books, you can deepen your understanding of Object-Oriented Analysis and Design (OOAD) and software development principles with the following books, in this recommended order:
+
+1. "Design Patterns: Elements of Reusable Object-Oriented Software" by Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides
+Why: This foundational book introduces design patterns, which are essential for solving common design problems in OOAD. Understanding these patterns will enhance your ability to design robust software.
+
+2. "Domain-Driven Design: Tackling Complexity in the Heart of Software" by Eric Evans
+Why: This book provides insight into modeling complex software systems and emphasizes the importance of domain modeling, which is critical for effective OOAD.
+
+3. "Refactoring: Improving the Design of Existing Code" by Martin Fowler
+Why: Learning how to improve existing code through refactoring is crucial for maintaining software quality. This book offers practical techniques to enhance design without changing behavior.
+
+4. "Working Effectively with Legacy Code" by Michael C. Feathers
+Why: As you encounter legacy code in real-world projects, this book will help you understand strategies to deal with and improve legacy systems, a common challenge in software development.
+
+5. "The Art of Software Engineering" by Andrew Hunt and David Thomas
+Why: This book expands on pragmatic software engineering practices and will help you develop a well-rounded approach to software development beyond OOAD principles.
+
+Suggested Reading Order:
+
+"Design Patterns": Start here to learn about reusable solutions to common problems.
+"Domain-Driven Design": Dive into domain modeling and complex system design.
+"Refactoring": Learn techniques for improving existing code.
+"Working Effectively with Legacy Code": Gain strategies for maintaining and enhancing older codebases.
+"The Art of Software Engineering": Broaden your perspective on software engineering practices.
+
+Additional Recommendations:
+
+"Clean Architecture: A Craftsman's Guide to Software Structure and Design" by Robert C. Martin: This book focuses on software architecture principles and practices that are essential as you grow in your career.
+"Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation" by Jez Humble and David Farley: Understanding CI/CD practices will enhance your ability to deliver quality software efficiently.

@@ -53,15 +53,22 @@ class Motorcycle implements Vehicle {
     }
 }
 
+// Enum for Vehicle Types
+class VehicleType {
+    const CAR = 'car';
+    const TRUCK = 'truck';
+    const MOTORCYCLE = 'motorcycle';
+}
+
 // Factory Class
 class VehicleFactory {
     public static function createVehicle($type) {
         switch ($type) {
-            case 'car':
+            case VehicleType::CAR:
                 return new Car();
-            case 'truck':
+            case VehicleType::TRUCK:
                 return new Truck();
-            case 'motorcycle':
+            case VehicleType::MOTORCYCLE:
                 return new Motorcycle();
             default:
                 throw new InvalidArgumentException("Unknown vehicle type: $type");
