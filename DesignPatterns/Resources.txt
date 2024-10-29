@@ -12,7 +12,7 @@ StaticFactory
 
 **Structural**
 
-Adapter 📓 -- to learn
+Adapter 📓 -- learned
 Bridge 📓
 Composite 📓
 DataMapper 📓

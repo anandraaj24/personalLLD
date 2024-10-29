@@ -179,6 +179,50 @@ $paymentService->makePayment(250);
 ?>
 ```
 
+### OR you can do this way!!
+
+```php
+<?php
+
+// Target Interface
+interface PaymentProcessor {
+    public function processPayment($amount);
+}
+
+// Adaptee
+class LegacyPaymentSystem {
+    public function makePayment($amount) {
+        echo "Processing payment of $$amount using Legacy Payment System." . PHP_EOL;
+    }
+}
+
+// Adapter
+class PaymentAdapter implements PaymentProcessor {
+    private $legacyPaymentSystem;
+
+    public function __construct(LegacyPaymentSystem $legacyPaymentSystem) {
+        $this->legacyPaymentSystem = $legacyPaymentSystem;
+    }
+
+    public function processPayment($amount) {
+        // Adapting the call from PaymentProcessor to LegacyPaymentSystem
+        $this->legacyPaymentSystem->makePayment($amount);
+    }
+}
+
+
+
+// Injecting the LegacyPaymentSystem to Adapter.
+$legacyPaymentSystem = new LegacyPaymentSystem();
+$paymentAdapter = new PaymentAdapter($legacyPaymentSystem);
+
+// Processing a payment
+$paymentAdapter->processPayment(100);
+$paymentAdapter->processPayment(250);
+
+?>
+```
+
 ## Explanation of the Code
 
 - **Target Interface (`PaymentProcessor`)**: This interface defines the method `processPayment`,  which the client will use to process payments.

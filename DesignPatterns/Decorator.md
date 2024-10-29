@@ -193,3 +193,5 @@ $underlinedText = new UnderlineDecorator($italicText);
 echo $underlinedText->getContent() . PHP_EOL; // Output: <u><i><b>Hello, World!</b></i></u>
 
 ?>
+
+This pattern is used to show the basic things with a special feature which is optional.

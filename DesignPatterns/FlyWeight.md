@@ -263,3 +263,78 @@ $manager->createDocument("Document 2", "Author B", "Times New Roman", 14);
 $manager->createDocument("Document 3", "Author C", "Arial", 12); // Shared format with Document 1
 
 ?>
+```
+
+# Scenario: Shape Drawing
+
+## Key Components
+
+- **Flyweight Interface**: An interface that defines methods that all concrete flyweights must implement.
+
+- **Concrete Flyweight**: A class that implements the Flyweight interface and contains shared state.
+
+- **Flyweight Factory**: A factory class that creates and manages flyweight objects. It ensures that flyweights are shared and reused.
+
+- **Client**: The class that uses the flyweight objects, managing the unique state externally.
+
+## Code Implementation
+
+```php
+
+// FlyWeight Interface.
+interface Shape {
+    public function draw(): void;
+}
+
+// Concrete FlyWeight
+class Circle implements Shape {
+    private $color; // Intrinsic state
+    private $radius; // Intrinsic state
+
+    public function __construct(string $color, float $radius) {
+        $this->color = $color;
+        $this->radius = $radius;
+    }
+
+    public function draw(): void {
+        echo "Drawing a " . $this->color . " circle with radius " . $this->radius . "\n";
+    }
+}
+
+// FlyWeight Factory
+class ShapeFactory {
+    private $shapes = []; // To hold shared flyweights
+
+    public function getCircle(string $color, float $radius): Shape {
+        $key = $color . "_" . $radius;
+
+        if (!isset($this->shapes[$key])) {
+            $this->shapes[$key] = new Circle($color, $radius);
+        }
+
+        return $this->shapes[$key];
+    }
+}
+
+// Client
+function clientCode() {
+    $factory = new ShapeFactory();
+
+    // Create and draw circles with shared state
+    $circle1 = $factory->getCircle("red", 5);
+    $circle2 = $factory->getCircle("blue", 5);
+    $circle3 = $factory->getCircle("red", 5); // Reuses the first circle
+
+    $circle1->draw();
+    $circle2->draw();
+    $circle3->draw();
+
+    // Checking if circle1 and circle3 are the same object
+    if ($circle1 === $circle3) {
+        echo "circle1 and circle3 are the same instance.\n";
+    } else {
+        echo "circle1 and circle3 are different instances.\n";
+    }
+}
+
+clientCode();
