@@ -1,4 +1,4 @@
-The State design pattern is a behavioral design pattern that allows an object to change its behavior when its internal state changes. This pattern is useful for managing state-dependent behavior without using a large number of conditional statements. By encapsulating states in separate classes, the State pattern promotes cleaner and more maintainable code.
+The State Design Pattern is a behavioral design pattern that allows an object to change its behavior when its internal state changes. The object will appear to change its class. This pattern is particularly useful for managing complex state-dependent behavior without needing to use a lot of conditional statements.
 
 ## Key Components of the State Pattern
 

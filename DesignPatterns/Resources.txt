@@ -37,7 +37,7 @@ Observer 📓 -- to learn
 Specification 📓
 State 📓 -- to learn
 Strategy 📓 -- to learn
-TemplateMethod 📓
+TemplateMethod 📓 -- to learn
 Visitor 📓
 
 **More**
