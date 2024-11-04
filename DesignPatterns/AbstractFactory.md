@@ -122,6 +122,95 @@ clientCode($modernFactory);
 **Concrete Factories**: VictorianFurnitureFactory and ModernFurnitureFactory implement the FurnitureFactory interface, returning instances of specific product families.
 **Client Code**: The clientCode function takes a FurnitureFactory as a parameter and uses it to create and interact with Chair and Sofa objects. This demonstrates how the client can work with different product families without knowing the details of their instantiation.
 
+## Scenario: OS System
+
+```php
+// Button.php
+interface Button {
+    public function paint(): void;
+}
+
+// Checkbox.php
+interface Checkbox {
+    public function paint(): void;
+}
+
+// WindowsButton.php
+class WindowsButton implements Button {
+    public function paint(): void {
+        echo "Rendering a button in Windows style.<br>";
+    }
+}
+
+// MacButton.php
+class MacButton implements Button {
+    public function paint(): void {
+        echo "Rendering a button in Mac style.<br>";
+    }
+}
+
+// WindowsCheckbox.php
+class WindowsCheckbox implements Checkbox {
+    public function paint(): void {
+        echo "Rendering a checkbox in Windows style.<br>";
+    }
+}
+
+// MacCheckbox.php
+class MacCheckbox implements Checkbox {
+    public function paint(): void {
+        echo "Rendering a checkbox in Mac style.<br>";
+    }
+}
+
+// GUIFactory.php
+interface GUIFactory {
+    public function createButton(): Button;
+    public function createCheckbox(): Checkbox;
+}
+
+// WindowsFactory.php
+class WindowsFactory implements GUIFactory {
+    public function createButton(): Button {
+        return new WindowsButton();
+    }
+
+    public function createCheckbox(): Checkbox {
+        return new WindowsCheckbox();
+    }
+}
+
+// MacFactory.php
+class MacFactory implements GUIFactory {
+    public function createButton(): Button {
+        return new MacButton();
+    }
+
+    public function createCheckbox(): Checkbox {
+        return new MacCheckbox();
+    }
+}
+
+// Simulating user input for the desired GUI type
+$osType = 'Windows'; // Change to 'Mac' for Mac GUI
+
+if ($osType === 'Windows') {
+    $factory = new WindowsFactory();
+} else {
+    $factory = new MacFactory();
+}
+
+// Create UI components
+$button = $factory->createButton();
+$checkbox = $factory->createCheckbox();
+
+// Paint the UI components
+$button->paint();
+$checkbox->paint();
+
+
+```
+
 ## Conclusion
 
 The Abstract Factory Design Pattern provides a powerful way to manage families of related objects while promoting code maintainability and flexibility. By encapsulating object creation logic, it allows for easy extension and testing of code without coupling the client to concrete implementations. This pattern is particularly beneficial in systems that require a high degree of configurability and modularity.

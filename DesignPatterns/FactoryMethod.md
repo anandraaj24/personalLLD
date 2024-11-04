@@ -98,3 +98,71 @@ clientCode($creatorB);
 - **ConcreteCreatorA and ConcreteCreatorB**: Override the factory method to create and return instances of ConcreteProductA and ConcreteProductB respectively.
 
 - **Client Code**: Demonstrates how the client interacts with the creator and product without knowing the specific classes being instantiated.
+
+## Scenario: Notification System
+
+```php
+// Step 1: Create the Product interface
+interface Notification {
+    public function notify(string $message): void;
+}
+
+// Step 2: Create Concrete Products
+class EmailNotification implements Notification {
+    public function notify(string $message): void {
+        echo "Sending Email Notification: " . $message . "\n";
+    }
+}
+
+class SMSNotification implements Notification {
+    public function notify(string $message): void {
+        echo "Sending SMS Notification: " . $message . "\n";
+    }
+}
+
+// Step 3: Create the Creator abstract class
+abstract class NotificationFactory {
+    abstract public function createNotification(): Notification;
+
+    public function sendNotification(string $message): void {
+        $notification = $this->createNotification();
+        $notification->notify($message);
+    }
+}
+
+// Step 4: Create Concrete Creators
+class EmailNotificationFactory extends NotificationFactory {
+    public function createNotification(): Notification {
+        return new EmailNotification();
+    }
+}
+
+class SMSNotificationFactory extends NotificationFactory {
+    public function createNotification(): Notification {
+        return new SMSNotification();
+    }
+}
+
+// Client code
+$message = '';
+$notificationType = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $message = trim($_POST['message']);
+    $notificationType = $_POST['notification_type'] ?? '';
+
+    // Input validation
+    if (empty($message) || empty($notificationType)) {
+        $error = "Message and Notification Type are required.";
+    } else {
+        if ($notificationType === 'email') {
+            $factory = new EmailNotificationFactory();
+        } else {
+            $factory = new SMSNotificationFactory();
+        }
+
+        // Send the notification
+        $factory->sendNotification($message);
+    }
+}
+```

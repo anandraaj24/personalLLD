@@ -47,3 +47,5 @@ Repository
 ServiceLocator 📓
 
 what is the builder design pattern, explain in deep with implementation of code, list all the key components of code, benefits and use cases to use this pattern. Write code in php
+
+remove the client code and serve this code as a real world web application
