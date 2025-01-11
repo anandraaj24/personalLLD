@@ -11,7 +11,20 @@ const puppeteer = require('puppeteer');
   const answerImage = process.argv[4]; // Get the dynamic answer image filename
 
   // Navigate to the URL
-  await page.goto(url, { waitUntil: 'networkidle0' });
+  await page.goto(url, { waitUntil: 'load', timeout: 60000 });
+
+  await page.waitForSelector('.qa-header', { timeout: 60000 }); 
+  await page.waitForSelector('.leftPanel', { timeout: 60000 }); 
+
+  await page.evaluate(() => {
+    // Hide the header container
+    const element = document.querySelector('.qa-header');
+    const leftPanel = document.querySelector('.leftPanel');
+    if (element) {
+      element.style.display = 'none';
+      leftPanel.style.display = 'none';
+    }
+  });
 
   try {
     // Wait for the question and answer divs to load

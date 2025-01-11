@@ -59,7 +59,10 @@ foreach ( $questions_and_answers as $index => $qa ) {
 
 	// Add the question image to the PDF
 	$pdf->AddPage();
-	$pdf->Image( $question_image, 10, 10, $new_width, $new_height );
+	$pdf->SetFont( 'Helvetica', 'B', 12 );
+	$pdf->Text( 10, 15, 'Question ' . ( $index + 1 ) );
+
+	$pdf->Image( $question_image, 10, 25, $new_width, $new_height );
 
 	// Get the dimensions of the answer image
 	list($orig_width, $orig_height) = getimagesize( $answer_image );
@@ -73,7 +76,10 @@ foreach ( $questions_and_answers as $index => $qa ) {
 
 	// Add the answer image to the PDF
 	$pdf->AddPage();
-	$pdf->Image( $answer_image, 10, 10, $new_width, $new_height );
+	$pdf->SetFont( 'Helvetica', 'B', 12 );
+	$pdf->Text( 10, 15, 'Answer ' . ( $index + 1 ) );
+
+	$pdf->Image( $answer_image, 10, 25, $new_width, $new_height );
 }
 
 $output_folder = __DIR__ . '/pdfs';
