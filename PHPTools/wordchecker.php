@@ -52,7 +52,7 @@ function displayLoader($totalUrls, $checkedCount) {
 }
 
 
-$sitemapUrl = 'https://www.multidots.com/author-sitemap.xml';
+$sitemapUrl = 'https://www.multidots.com/post-sitemap.xml';
 $words = ['preprod'];
 
 $urls = fetchSitemapUrls($sitemapUrl);
