@@ -40,7 +40,7 @@ function get_questions( string $url ): array {
 }
 
 if ( $argc < 2 ) {
-	echo "Usage: php generate_pdf.php <exam_url>\n";
+	echo "Usage: php pdfgenerator.php <exam_url>\n";
 	exit( 1 );
 }
 

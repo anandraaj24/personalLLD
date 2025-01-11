@@ -1,6 +1,13 @@
 <?php
 require_once 'vendor/autoload.php';
 
+if ( $argc < 2 ) {
+	echo "Usage: php pdfbinder.php <pdf_name>\n";
+	exit( 1 );
+}
+
+$pdf_name = $argv[1];
+
 $image_folder = 'question_answer_images';
 
 if ( ! is_dir( $image_folder ) ) {
@@ -86,7 +93,7 @@ $output_folder = __DIR__ . '/pdfs';
 if ( ! is_dir( $output_folder ) ) {
 	mkdir( $output_folder, 0777, true );
 }
-unlink( $output_folder . '/helloworld.pdf' );
-$pdf->Output( $output_folder . '/helloworld.pdf', 'F' );
+
+$pdf->Output( $output_folder . '/' . $pdf_name, 'F' );
 
 echo 'PDF generated successfully!';
