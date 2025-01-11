@@ -2,7 +2,7 @@
 require_once 'vendor/autoload.php';
 
 if ( $argc < 2 ) {
-	echo "Usage: php pdfbinder.php <pdf_name>\n";
+	echo "Usage: php pdfbinder.php <pdf_name.pdf>\n";
 	exit( 1 );
 }
 

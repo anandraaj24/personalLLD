@@ -39,6 +39,40 @@ function get_questions( string $url ): array {
 	return $questions;
 }
 
+/**
+ * Function to delete all the contents of a folder.
+ *
+ * @param string $folderPath Path of the folder.
+ * @return bool
+ */
+function deleteFolderContents( $folderPath ) {
+	if ( ! is_dir( $folderPath ) ) {
+		echo 'The folder does not exist.';
+		return false;
+	}
+
+	$files = scandir( $folderPath );
+
+	foreach ( $files as $file ) {
+		if ( $file === '.' || $file === '..' ) {
+			continue;
+		}
+
+		$filePath = $folderPath . DIRECTORY_SEPARATOR . $file;
+
+		if ( is_dir( $filePath ) ) {
+			deleteFolderContents( $filePath );
+			rmdir( $filePath );
+		} else {
+			unlink( $filePath );
+		}
+	}
+
+	echo 'Contents of the folder deleted.';
+	return true;
+}
+
+
 if ( $argc < 2 ) {
 	echo "Usage: php pdfgenerator.php <exam_url>\n";
 	exit( 1 );
@@ -53,6 +87,7 @@ if ( ! file_exists( $image_folder ) ) {
 	mkdir( $image_folder, 0777, true );
 }
 
+deleteFolderContents( $image_folder );
 foreach ( $all_questions_link as $index => $url ) {
 
 	$question_image = $image_folder . '/question_' . $index . '.png';
