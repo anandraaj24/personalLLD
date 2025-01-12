@@ -74,13 +74,29 @@ function deleteFolderContents( $folderPath ) {
 
 
 if ( $argc < 2 ) {
-	echo "Usage: php pdfgenerator.php <exam_url>\n";
+	echo "Usage: php pdfgenerator.php <exam_url|json_file_path>\n";
 	exit( 1 );
 }
 
-$exam_url = $argv[1];
+$input              = $argv[1];
+$all_questions_link = array();
 
-$all_questions_link = get_questions( $exam_url );
+if ( filter_var( $input, FILTER_VALIDATE_URL ) ) {
+	$exam_url           = $input;
+	$all_questions_link = get_questions( $exam_url );
+} elseif ( file_exists( $input ) && is_readable( $input ) ) {
+	$json_data = file_get_contents( $input );
+	$questions = json_decode( $json_data, true );
+
+	if ( is_array( $questions ) ) {
+		$all_questions_link = $questions;
+	} else {
+		echo "Invalid JSON structure.\n";
+	}
+} else {
+	echo "Invalid argument. Please provide either a valid URL or a JSON file path.\n";
+	exit( 1 );
+}
 
 $image_folder = 'question_answer_images';
 if ( ! file_exists( $image_folder ) ) {
