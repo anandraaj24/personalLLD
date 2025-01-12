@@ -5,6 +5,12 @@ const puppeteer = require('puppeteer');
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
+  // For setting cookies. Make 'cookies.json' file and put json cookies
+  // const fs = require('fs');
+  // const cookiesJson = fs.readFileSync('cookies.json', 'utf-8');
+  // const cookies = JSON.parse(cookiesJson);
+  // await page.setCookie(...cookies);
+
   // Set the URL from the command-line arguments
   const url = process.argv[2];  // Accept the URL from PHP via command-line
   const questionImage = process.argv[3]; // Get the dynamic question image filename
