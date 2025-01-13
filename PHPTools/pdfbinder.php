@@ -1,12 +1,13 @@
 <?php
 require_once 'vendor/autoload.php';
 
-if ( $argc < 2 ) {
-	echo "Usage: php pdfbinder.php <pdf_name.pdf>\n";
+if ( $argc < 3 ) {
+	echo "Usage: php pdfbinder.php <pdf_name.pdf> <exam_url>\n";
 	exit( 1 );
 }
 
 $pdf_name = $argv[1];
+$exam_url = $argv[2];
 
 $image_folder = 'question_answer_images';
 
@@ -16,6 +17,27 @@ if ( ! is_dir( $image_folder ) ) {
 
 $pdf = new TCPDF();
 $pdf->SetAutoPageBreak( true, PDF_MARGIN_BOTTOM );
+
+// Define the plain text part and the URL part.
+$plain_text = 'Exam link: ';
+$link_text  = $exam_url;
+$link_url   = $exam_url;
+
+$pdf->AddPage();
+$pdf->SetTextColor( 68, 68, 68 );
+$pdf->SetFont( 'Helvetica', '', 12 );
+$pdf->Text( 10, 25, $plain_text );
+
+$pdf->SetXY( 10 + $pdf->GetStringWidth( $plain_text ), 25 );
+$pdf->SetFont( 'Helvetica', 'U', 12 );
+$pdf->SetTextColor( 51, 102, 204 );
+
+$multi_cell_width = $pdf->GetPageWidth() - 20 - $pdf->GetStringWidth( $plain_text );
+$pdf->MultiCell( $multi_cell_width, 10, $link_text, 0, 'L' );
+$current_y = $pdf->GetY();
+$pdf->Link( 10 + $pdf->GetStringWidth( $plain_text ), $current_y - 10, $multi_cell_width, 10, $link_url );
+
+$pdf->SetTextColor( 68, 68, 68 );
 
 $questions_and_answers = array();
 
@@ -67,7 +89,7 @@ foreach ( $questions_and_answers as $index => $qa ) {
 	// Add the question image to the PDF
 	$pdf->AddPage();
 	$pdf->SetFont( 'Helvetica', 'B', 12 );
-	$pdf->Text( 10, 15, 'Question ' . ( $index + 1 ) );
+	$pdf->Text( 9, 15, 'Question ' . ( $index + 1 ) );
 
 	$pdf->Image( $question_image, 10, 25, $new_width, $new_height );
 
