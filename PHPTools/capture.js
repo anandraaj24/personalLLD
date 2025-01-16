@@ -1,15 +1,16 @@
 const puppeteer = require('puppeteer');
-
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 (async () => {
   // Launch headless browser
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   // For setting cookies. Make 'cookies.json' file and put json cookies
-  // const fs = require('fs');
-  // const cookiesJson = fs.readFileSync('cookies.json', 'utf-8');
-  // const cookies = JSON.parse(cookiesJson);
-  // await page.setCookie(...cookies);
+  const fs = require('fs');
+  const cookiesJson = fs.readFileSync('cookies.json', 'utf-8');
+  const cookies = JSON.parse(cookiesJson);
+  await page.setCookie(...cookies);
+  
 
   // Set the URL from the command-line arguments
   const url = process.argv[2];  // Accept the URL from PHP via command-line
@@ -26,11 +27,15 @@ const puppeteer = require('puppeteer');
     // Hide the header container
     const element = document.querySelector('.qa-header');
     const leftPanel = document.querySelector('.leftPanel');
+    const bottomBarContent = document.querySelector('.bottom-bar-content');
     if (element) {
       element.style.display = 'none';
       leftPanel.style.display = 'none';
+      bottomBarContent.style.display = 'none';
     }
   });
+
+  // await delay(120000);
 
   try {
     // Wait for the question and answer divs to load
