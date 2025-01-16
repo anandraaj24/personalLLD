@@ -1,0 +1,24 @@
+{
+    "folders": [
+        {
+            "name": "GATE PDFs",
+            "id": "Folder id from URL",
+            "subfolders": [
+                {
+                    "name": "Engg Mathematics",
+                    "id": "Folder id from URL",
+                    "subfolders": [
+                        {
+                            "name": "Linear Algebra",
+                            "id": "Folder id from URL"
+                        },
+                        {
+                            "name": "Probability",
+                            "id": "Folder id from URL"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
