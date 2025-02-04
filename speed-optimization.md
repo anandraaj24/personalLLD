@@ -17,8 +17,12 @@ font:
 preload font for above the fold
 include font in-page the html <style> tag.
 
-third party links:
-prefetch and preconnect to third party scripts for css and js which are necessary for faster execution.
+preloading methods:
+preload: For critical assets like CSS, fonts, or JavaScript that are needed immediately for rendering.
+dns-prefetch: Prefetch DNS resolution for external domains.
+prefetch: For non-essential assets that will be used later.
+preconnect: For external resources to reduce connection latency.
+prerender: For full pages or content that you expect the user to visit shortly.Caching: Combine preloading with caching strategies for better resource management.
 
 javascript:
 preload js for above the fold
