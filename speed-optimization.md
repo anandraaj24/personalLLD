@@ -32,3 +32,7 @@ use setTimeout for delaying and defer keyword for deferring.
 the animation update+paint logic should be executed first then all other logic in the background.
 
 monitor text to html ratio of the page.
+
+use rendering method which is best for your page and which makes the page speed more faster.
+
+use service workers to cache page + for offline use.
