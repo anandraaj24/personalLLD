@@ -1,0 +1,34 @@
+Goal is to Make the content(text+assets+styling+layout+js animations) of above the fold available as soon as possible and interactive(css+js animations) at the same time and the layout should not be shifted too much, it should be fixed and the interaction time of animations should be as fast as possible.
+
+css:
+preload css for above the fold.
+minify all the css and load lazy.
+purge and remove unused css.
+critical css for above the fold content
+
+images:
+preload for LCP and lazy load for other images
+srcset and alt attributes for images.
+image compression to webP format.
+Dimension should be as needed.
+Rendering should not be blocked due to css or js.
+
+font:
+preload font for above the fold
+include font in-page the html <style> tag.
+
+third party links:
+prefetch and preconnect to third party scripts for css and js which are necessary for faster execution.
+
+javascript:
+preload js for above the fold
+include js in-page for above the fold.
+execution for js above the fold should not be blocked.
+delay all other javascript which are not necessary for above the fold
+defer or async other javascript.
+it should not block any kind of css or image rendering.
+javascript animation should be as fast as possible.
+use setTimeout for delaying and defer keyword for deferring.
+the animation update+paint logic should be executed first then all other logic in the background.
+
+monitor text to html ratio of the page.
