@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
+const path = require('path');
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -66,6 +67,25 @@ const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
       } else {
         await bestAnswer.screenshot({ path: answerImage });
       }
+    }
+
+    // --- Save metadata ---
+    const indexMatch = path.basename(questionImage).match(/(\d+)/);
+    if (indexMatch) {
+      const index = indexMatch[1]; // e.g. "0"
+      const metadataFile = 'metadata.json';
+
+      let metadata = {};
+      if (fs.existsSync(metadataFile)) {
+        try {
+          metadata = JSON.parse(fs.readFileSync(metadataFile, 'utf-8'));
+        } catch {
+          metadata = {};
+        }
+      }
+
+      metadata[index] = url;
+      fs.writeFileSync(metadataFile, JSON.stringify(metadata, null, 2));
     }
 
   } catch (e) {

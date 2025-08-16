@@ -103,6 +103,17 @@ if ( ! file_exists( $image_folder ) ) {
 	mkdir( $image_folder, 0777, true );
 }
 
+/**
+ * >>> NEW: initialize/reset metadata.json <<<
+ * This will create metadata.json if it doesn't exist,
+ * or clear/overwrite it if it already exists.
+ */
+$metadata_file = __DIR__ . '/metadata.json';
+$initialized   = file_put_contents( $metadata_file, json_encode( new stdClass(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES ) . PHP_EOL );
+if ( false === $initialized ) {
+	echo "Warning: Failed to initialize metadata.json\n";
+}
+
 deleteFolderContents( $image_folder );
 foreach ( $all_questions_link as $index => $url ) {
 
