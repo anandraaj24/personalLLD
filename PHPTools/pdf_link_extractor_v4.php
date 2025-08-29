@@ -63,10 +63,10 @@ function extract_section_numbers($text, $chapter) {
 // Extract GO links from text
 function extract_links_from_text($text) {
     $urls = [];
-    if (preg_match_all('#https?://(?:www\.)?gateoverflow\.in/\d+/gate-[^ \s\)\(]+#i', $text, $m)) {
+    if (preg_match_all('#https?://(?:www\.)?gateoverflow\.in/\d+/gate[^ \s\)\(]+#i', $text, $m)) {
         foreach ($m[0] as $url) {
             $url = trim(rtrim($url, ".,);]>\'\" \n\r\t"));
-            if (preg_match('#^https?://(?:www\.)?gateoverflow\.in/\d+/gate-#i', $url)) {
+            if (preg_match('#^https?://(?:www\.)?gateoverflow\.in/\d+/gate#i', $url)) {
                 $urls[] = $url;
             }
         }
@@ -142,7 +142,7 @@ $links    = array_unique(array_merge($fromText, $fromUri));
 
 // Filter valid GO links
 $links = array_values(array_filter($links, function($url) {
-    return is_string($url) && preg_match('#^https?://(?:www\.)?gateoverflow\.in/\d+/gate-#i', $url);
+    return is_string($url) && preg_match('#^https?://(?:www\.)?gateoverflow\.in/\d+/gate#i', $url);
 }));
 
 // Step 4: Map section numbers to links (by order)
